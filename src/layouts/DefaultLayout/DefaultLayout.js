@@ -4,7 +4,10 @@ function DefaultLayout({ children }) {
   return (
     <div className="wrapper">
       <Header />
-      <div className="content"> {children}</div>
+      <div className="content" style={{ marginTop: 56 }}>
+        {" "}
+        {children}
+      </div>
     </div>
   );
 }
