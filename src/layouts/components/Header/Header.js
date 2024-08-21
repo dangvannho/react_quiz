@@ -2,6 +2,7 @@ import { NavLink } from "react-router-dom";
 import Container from "react-bootstrap/Container";
 import Nav from "react-bootstrap/Nav";
 import Navbar from "react-bootstrap/Navbar";
+import NavDropdown from "react-bootstrap/NavDropdown";
 import Button from "react-bootstrap/Button";
 
 import config from "~/config";
@@ -32,6 +33,14 @@ function Header() {
           <Button variant="outline-dark">Login</Button>
           <Button variant="dark">Sign up</Button>
         </Nav>
+
+        {/* <Nav>
+          <NavDropdown title="Settings" id="basic-nav-dropdown">
+            <NavDropdown.Item href="">Login</NavDropdown.Item>
+            <NavDropdown.Item href="">Log out</NavDropdown.Item>
+            <NavDropdown.Item href="">Profile</NavDropdown.Item>
+          </NavDropdown>
+        </Nav> */}
       </Container>
     </Navbar>
   );
