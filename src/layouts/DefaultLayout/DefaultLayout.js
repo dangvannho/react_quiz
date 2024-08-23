@@ -5,7 +5,6 @@ function DefaultLayout({ children }) {
     <div className="wrapper">
       <Header />
       <div className="content" style={{ marginTop: 56 }}>
-        {" "}
         {children}
       </div>
     </div>
