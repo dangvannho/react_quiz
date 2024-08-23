@@ -15,6 +15,7 @@ import {
   FaRegLaughWink,
   FaHeart,
 } from "react-icons/fa";
+import { DiReact } from "react-icons/di";
 import sidebarBg from "~/assets/imgs/bg2.jpg";
 import "./SideBar.scss";
 
@@ -30,6 +31,8 @@ function SideBar({ collapsed, toggled, handleToggleSidebar }) {
       <SidebarHeader>
         <div
           style={{
+            display: "flex",
+            alignItems: "center",
             padding: "24px",
             textTransform: "uppercase",
             fontWeight: "bold",
@@ -40,41 +43,18 @@ function SideBar({ collapsed, toggled, handleToggleSidebar }) {
             whiteSpace: "nowrap",
           }}
         >
-          Admin
+          <DiReact size={"3em"} />
+          <span style={{ fontSize: "18px" }}>Admin</span>
         </div>
       </SidebarHeader>
 
       <SidebarContent>
         <Menu iconShape="circle">
-          <MenuItem
-            icon={<FaTachometerAlt />}
-            suffix={<span className="badge red">New</span>}
-          >
-            dashboard
-          </MenuItem>
-          <MenuItem icon={<FaGem />}>components</MenuItem>
-        </Menu>
-        <Menu iconShape="circle">
-          <SubMenu
-            suffix={<span className="badge yellow">3</span>}
-            icon={<FaRegLaughWink />}
-          >
-            <MenuItem> 1</MenuItem>
-            <MenuItem> 2</MenuItem>
-            <MenuItem> 3</MenuItem>
-          </SubMenu>
-          <SubMenu
-            prefix={<span className="badge gray">3</span>}
-            icon={<FaHeart />}
-          >
-            <MenuItem> 1</MenuItem>
-            <MenuItem> 2</MenuItem>
-            <MenuItem> 3</MenuItem>
-          </SubMenu>
-
-          <SubMenu icon={<FaList />}>
-            <MenuItem> 1 </MenuItem>
-            <MenuItem> 2 </MenuItem>
+          <MenuItem icon={<FaTachometerAlt />}>Dashboard</MenuItem>
+          <SubMenu icon={<FaGem />} title="Features">
+            <MenuItem>Quản lý User</MenuItem>
+            <MenuItem>Quản lý Bài Quiz</MenuItem>
+            <MenuItem>Quản lý Câu Hỏi</MenuItem>
           </SubMenu>
         </Menu>
       </SidebarContent>
@@ -83,16 +63,15 @@ function SideBar({ collapsed, toggled, handleToggleSidebar }) {
         <div
           className="sidebar-btn-wrapper"
           style={{
-            padding: "20px 24px",
+            padding: "20px 55px",
           }}
         >
           <a
-            href="https://github.com/azouaoui-med/react-pro-sidebar"
+            href="https://github.com/dangvannho/react_quiz"
             target="_blank"
             className="sidebar-btn"
             rel="noopener noreferrer"
           >
-            <FaGithub />
             <span
               style={{
                 whiteSpace: "nowrap",
@@ -100,7 +79,7 @@ function SideBar({ collapsed, toggled, handleToggleSidebar }) {
                 overflow: "hidden",
               }}
             >
-              viewSource
+              &copy; viewSource
             </span>
           </a>
         </div>
