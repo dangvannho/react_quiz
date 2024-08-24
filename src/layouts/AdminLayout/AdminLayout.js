@@ -8,10 +8,8 @@ function AdminLayout({ children }) {
   return (
     <div className="admin-container">
       <SideBar collapsed={collapsed} />
-      <div className="content">
-        <FaBars onClick={() => setCollapsed(!collapsed)} />
-        {children}
-      </div>
+      <FaBars onClick={() => setCollapsed(!collapsed)} />
+      <div className="content">{children}</div>
     </div>
   );
 }

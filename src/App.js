@@ -1,4 +1,5 @@
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import { Fragment } from "react";
 import { publicRoutes } from "./routes";
 import DefaultLayout from "./layouts/DefaultLayout";
 
@@ -12,6 +13,8 @@ function App() {
             let Layout = DefaultLayout;
             if (item.layout) {
               Layout = item.layout;
+            } else if (item.layout === null) {
+              Layout = Fragment;
             }
             return (
               <Route

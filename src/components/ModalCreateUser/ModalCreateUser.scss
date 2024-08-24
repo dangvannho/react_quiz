@@ -1,0 +1,32 @@
+@media (min-width: 1200px) {
+  .modal-xl {
+    --bs-modal-width: 1258px;
+  }
+}
+
+@media (min-width: 768px) {
+  .col-md-6,
+  .col-md-4 {
+    flex: 1 !important;
+  }
+}
+
+button.btn-secondary {
+  border-radius: 5px;
+}
+
+.modal-body {
+  .form-row {
+    display: flex;
+    gap: 0 10px;
+  }
+}
+
+.form-group,
+.form-row {
+  margin-bottom: 10px;
+
+  label {
+    margin-bottom: 8px;
+  }
+}

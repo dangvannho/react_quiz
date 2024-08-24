@@ -16,6 +16,9 @@ import {
   FaHeart,
 } from "react-icons/fa";
 import { DiReact } from "react-icons/di";
+import { Link } from "react-router-dom";
+
+import config from "~/config";
 import sidebarBg from "~/assets/imgs/bg2.jpg";
 import "./SideBar.scss";
 
@@ -50,11 +53,19 @@ function SideBar({ collapsed, toggled, handleToggleSidebar }) {
 
       <SidebarContent>
         <Menu iconShape="circle">
-          <MenuItem icon={<FaTachometerAlt />}>Dashboard</MenuItem>
+          <MenuItem icon={<FaTachometerAlt />}>
+            <Link to={config.routes.admin}>Dashboard</Link>
+          </MenuItem>
           <SubMenu icon={<FaGem />} title="Features">
-            <MenuItem>Quản lý User</MenuItem>
-            <MenuItem>Quản lý Bài Quiz</MenuItem>
-            <MenuItem>Quản lý Câu Hỏi</MenuItem>
+            <MenuItem>
+              <Link to={config.routes.manageUser}>Quản lý User</Link>
+            </MenuItem>
+            <MenuItem>
+              <Link to={config.routes.manageQuiz}>Quản lý Bài Quiz</Link>
+            </MenuItem>
+            <MenuItem>
+              <Link to={config.routes.manageQuestion}>Quản lý Câu Hỏi</Link>
+            </MenuItem>
           </SubMenu>
         </Menu>
       </SidebarContent>

@@ -1,8 +1,11 @@
 import config from "~/config";
 
 import Home from "~/pages/Home";
-import Admin from "~/pages/Admin";
 import User from "~/pages/User";
+import Admin from "~/pages/Admin";
+import ManageUser from "~/pages/Admin/ManageUser";
+import ManageQuiz from "~/pages/Admin/ManageQuiz";
+import ManageQuestion from "~/pages/Admin/ManageQuestion";
 import NotFound from "~/pages/NotFound";
 
 import AdminLayout from "~/layouts/AdminLayout";
@@ -11,7 +14,27 @@ const publicRoutes = [
   { path: config.routes.home, component: Home },
   { path: config.routes.admin, component: Admin, layout: AdminLayout },
   { path: config.routes.user, component: User },
-  { path: config.routes.notFound, component: NotFound },
+  {
+    path: config.routes.manageUser,
+    component: ManageUser,
+    layout: AdminLayout,
+  },
+  {
+    path: config.routes.manageUser,
+    component: ManageUser,
+    layout: AdminLayout,
+  },
+  {
+    path: config.routes.manageQuiz,
+    component: ManageQuiz,
+    layout: AdminLayout,
+  },
+  {
+    path: config.routes.manageQuestion,
+    component: ManageQuestion,
+    layout: AdminLayout,
+  },
+  { path: config.routes.notFound, component: NotFound, layout: null },
 ];
 
 const privateRoutes = [];
