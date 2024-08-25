@@ -2,7 +2,9 @@ import { useEffect, useState } from "react";
 import axios from "axios";
 import Button from "react-bootstrap/Button";
 import Modal from "react-bootstrap/Modal";
-import { FaPlusCircle } from "react-icons/fa";
+import { FcPlus } from "react-icons/fc";
+import { toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 import "./ModalCreateUser.scss";
 
 function ModalCreateUser({ show, setShow }) {
@@ -41,7 +43,26 @@ function ModalCreateUser({ show, setShow }) {
     reset();
   };
 
+  const validateEmail = (email) => {
+    return String(email)
+      .toLowerCase()
+      .match(
+        /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|.(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
+      );
+  };
+
   const handleSubmitCreareUSer = async () => {
+    // validate
+    const isValidEmail = validateEmail(email);
+    if (!isValidEmail) {
+      toast.error("Invalid email!");
+      return;
+    }
+    if (!password) {
+      toast.error("Invalid password!");
+      return;
+    }
+
     // call api
     const data = new FormData();
     data.append("email", email);
@@ -54,9 +75,14 @@ function ModalCreateUser({ show, setShow }) {
       "http://localhost:8081/api/v1/participant",
       data
     );
-    console.log(res);
-    setShow(false);
-    reset();
+
+    if (res.data.EC === 0) {
+      toast.success(res.data.EM);
+      setShow(false);
+      handleClose();
+    } else {
+      toast.error(res.data.EM);
+    }
   };
   return (
     <Modal show={show} onHide={handleClose} size="xl" backdrop="static">
@@ -110,7 +136,7 @@ function ModalCreateUser({ show, setShow }) {
 
           <div className="form-group col-md-12 upload">
             <label htmlFor="label-upload" className="label-upload">
-              <FaPlusCircle />
+              <FcPlus />
               Upload File Image
             </label>
             <input
