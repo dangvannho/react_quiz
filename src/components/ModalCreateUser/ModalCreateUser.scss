@@ -30,3 +30,34 @@ button.btn-secondary {
     margin-bottom: 8px;
   }
 }
+
+.img-preview {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 150px;
+  border: 2px dashed #ccc;
+  border-radius: 5px;
+  color: #ccc;
+
+  img {
+    width: auto;
+    height: 100%;
+  }
+}
+
+.upload {
+  .label-upload {
+    display: inline-flex;
+    align-items: center;
+    gap: 0 5px;
+    padding: 5px 10px;
+    border-radius: 5px;
+    background-color: #eeeeee;
+    cursor: pointer;
+
+    &:hover {
+      background-color: #dbdada;
+    }
+  }
+}

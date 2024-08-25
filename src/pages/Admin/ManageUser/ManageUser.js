@@ -1,4 +1,5 @@
 import ModalCreateUser from "~/components/ModalCreateUser";
+import "./ManageUser.scss";
 
 function ManageUser() {
   return (
