@@ -1,0 +1,21 @@
+.wapper-table {
+  width: 98%;
+  height: 776px;
+  margin-top: 20px;
+  overflow: auto;
+
+  thead {
+    position: sticky;
+    top: 0;
+
+    th {
+      background-color: #04aa6d;
+      color: white;
+    }
+  }
+
+  .group-btn {
+    display: flex;
+    gap: 0 10px;
+  }
+}

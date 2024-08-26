@@ -7,25 +7,18 @@ import {
   SidebarFooter,
   SidebarContent,
 } from "react-pro-sidebar";
-import {
-  FaTachometerAlt,
-  FaGem,
-  FaList,
-  FaGithub,
-  FaRegLaughWink,
-  FaHeart,
-} from "react-icons/fa";
+import { FaTachometerAlt, FaGem } from "react-icons/fa";
 import { DiReact } from "react-icons/di";
 import { Link } from "react-router-dom";
 
 import config from "~/config";
-import sidebarBg from "~/assets/imgs/bg2.jpg";
+// import sidebarBg from "~/assets/imgs/bg2.jpg";
 import "./SideBar.scss";
 
 function SideBar({ collapsed, toggled, handleToggleSidebar }) {
   return (
     <ProSidebar
-      image={sidebarBg}
+      image={false}
       collapsed={collapsed}
       toggled={toggled}
       breakPoint="md"

@@ -65,7 +65,7 @@ function ModalCreateUser({ show, setShow }) {
 
     // call api
     const data = await createNewUser(email, password, username, role, image);
-    console.log(data);
+
     if (data.EC === 0) {
       toast.success(data.EM);
       handleClose();

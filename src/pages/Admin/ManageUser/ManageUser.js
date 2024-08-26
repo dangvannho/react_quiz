@@ -3,6 +3,7 @@ import { Bounce, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { FcPlus } from "react-icons/fc";
 import ModalCreateUser from "~/components/ModalCreateUser";
+import TableUser from "~/components/TableUser";
 import "./ManageUser.scss";
 
 function ManageUser() {
@@ -15,7 +16,9 @@ function ManageUser() {
           <FcPlus />
           Add new user
         </button>
-        <div className="manage-user_table">table user</div>
+        <div className="manage-user_table">
+          <TableUser />
+        </div>
         <ModalCreateUser show={showModal} setShow={setShowModal} />
       </div>
 
