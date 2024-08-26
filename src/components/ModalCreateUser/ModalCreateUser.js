@@ -1,11 +1,11 @@
 import { useEffect, useState } from "react";
-import axios from "axios";
 import Button from "react-bootstrap/Button";
 import Modal from "react-bootstrap/Modal";
 import { FcPlus } from "react-icons/fc";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import "./ModalCreateUser.scss";
+import createNewUser from "~/services/apiCreateService";
 
 function ModalCreateUser({ show, setShow }) {
   const [email, setEmail] = useState("");
@@ -64,26 +64,16 @@ function ModalCreateUser({ show, setShow }) {
     }
 
     // call api
-    const data = new FormData();
-    data.append("email", email);
-    data.append("password", password);
-    data.append("username", username);
-    data.append("role", role);
-    data.append("userImage", image);
-
-    const res = await axios.post(
-      "http://localhost:8081/api/v1/participant",
-      data
-    );
-
-    if (res.data.EC === 0) {
-      toast.success(res.data.EM);
-      setShow(false);
+    const data = await createNewUser(email, password, username, role, image);
+    console.log(data);
+    if (data.EC === 0) {
+      toast.success(data.EM);
       handleClose();
     } else {
-      toast.error(res.data.EM);
+      toast.error(data.EM);
     }
   };
+
   return (
     <Modal show={show} onHide={handleClose} size="xl" backdrop="static">
       <Modal.Header closeButton>
@@ -98,6 +88,7 @@ function ModalCreateUser({ show, setShow }) {
               <input
                 type="email"
                 className="form-control"
+                value={email}
                 onChange={(e) => setEmail(e.target.value)}
               />
             </div>
