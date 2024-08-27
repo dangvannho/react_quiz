@@ -7,7 +7,7 @@ import "react-toastify/dist/ReactToastify.css";
 import "./ModalCreateUser.scss";
 import createNewUser from "~/services/apiCreateService";
 
-function ModalCreateUser({ show, setShow }) {
+function ModalCreateUser({ show, setShow, fetchListUser }) {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [username, setUsername] = useState("");
@@ -69,6 +69,7 @@ function ModalCreateUser({ show, setShow }) {
     if (data.EC === 0) {
       toast.success(data.EM);
       handleClose();
+      fetchListUser();
     } else {
       toast.error(data.EM);
     }
