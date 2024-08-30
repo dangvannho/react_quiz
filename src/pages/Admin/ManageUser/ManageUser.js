@@ -53,6 +53,7 @@ function ManageUser() {
           show={showModalUpdate}
           setShow={setShowModalUpdate}
           dataUser={dataUser}
+          fetchListUser={fetchListUser}
         />
       </div>
 

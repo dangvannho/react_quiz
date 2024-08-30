@@ -6,9 +6,10 @@ import { FcPlus } from "react-icons/fc";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import "~/components/ModalCreateUser/ModalCreateUser.scss";
-import createNewUser from "~/services/apiCreateService";
+import updateUser from "~/services/apiUpdateUserService";
 
 function ModalUpdateUser({ show, setShow, fetchListUser, dataUser }) {
+  const [id, setId] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [username, setUsername] = useState("");
@@ -25,13 +26,15 @@ function ModalUpdateUser({ show, setShow, fetchListUser, dataUser }) {
 
   useEffect(() => {
     if (!_.isEmpty(dataUser)) {
+      setId(dataUser.id);
       setEmail(dataUser.email);
       setUsername(dataUser.username);
       setRole(dataUser.role);
-      setImage("");
 
       if (dataUser.image) {
         setPreviewImage(`data:image/jpeg;base64,${dataUser.image}`);
+      } else {
+        setPreviewImage("");
       }
     }
   }, [dataUser]);
@@ -47,29 +50,9 @@ function ModalUpdateUser({ show, setShow, fetchListUser, dataUser }) {
     setShow(false);
   };
 
-  const validateEmail = (email) => {
-    return String(email)
-      .toLowerCase()
-      .match(
-        /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|.(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
-      );
-  };
-
-  const handleSubmitCreareUSer = async () => {
-    // validate
-    const isValidEmail = validateEmail(email);
-    if (!isValidEmail) {
-      toast.error("Invalid email!");
-      return;
-    }
-    if (!password) {
-      toast.error("Invalid password!");
-      return;
-    }
-
+  const handleSubmitUpdateUSer = async () => {
     // call api
-    const data = await createNewUser(email, password, username, role, image);
-
+    const data = await updateUser(id, username, role, image);
     if (data.EC === 0) {
       toast.success(data.EM);
       handleClose();
@@ -124,6 +107,7 @@ function ModalUpdateUser({ show, setShow, fetchListUser, dataUser }) {
               <label>Role</label>
               <select
                 className="form-control"
+                value={role}
                 onChange={(e) => setRole(e.target.value)}
               >
                 <option value="USER">USER</option>
@@ -159,7 +143,7 @@ function ModalUpdateUser({ show, setShow, fetchListUser, dataUser }) {
         <Button variant="secondary" onClick={handleClose}>
           Close
         </Button>
-        <Button variant="primary" onClick={handleSubmitCreareUSer}>
+        <Button variant="primary" onClick={handleSubmitUpdateUSer}>
           Save
         </Button>
       </Modal.Footer>
