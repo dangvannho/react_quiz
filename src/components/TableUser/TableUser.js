@@ -1,6 +1,11 @@
 import "./TableUser.scss";
 
-function TableUser({ listUser, setShowModalUpdate, setDataUser }) {
+function TableUser({
+  listUser,
+  setShowModalUpdate,
+  setShowModalView,
+  setDataUser,
+}) {
   return (
     <div className="wapper-table">
       <table className="table table-bordered table-striped table-hover ">
@@ -22,7 +27,15 @@ function TableUser({ listUser, setShowModalUpdate, setDataUser }) {
                 <td>{item.email}</td>
                 <td>{item.role}</td>
                 <td className="group-btn">
-                  <button className="btn btn-secondary">View</button>
+                  <button
+                    className="btn btn-secondary"
+                    onClick={() => {
+                      setShowModalView(true);
+                      setDataUser(item);
+                    }}
+                  >
+                    View
+                  </button>
                   <button
                     className="btn btn-warning"
                     onClick={() => {

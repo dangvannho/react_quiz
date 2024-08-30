@@ -5,12 +5,14 @@ import { FcPlus } from "react-icons/fc";
 import ModalCreateUser from "~/components/ModalCreateUser";
 import ModalUpdateUser from "~/components/ModalUpdateUser";
 import TableUser from "~/components/TableUser";
-import apiAllUserService from "~/services/apiAllUserService";
+import ViewUser from "~/components/ViewUser";
+import allUserService from "~/services/apiAllUserService";
 import "./ManageUser.scss";
 
 function ManageUser() {
   const [showModalCreate, setShowModalCreate] = useState(false);
   const [showModalUpdate, setShowModalUpdate] = useState(false);
+  const [showModalView, setShowModalView] = useState(false);
   const [dataUser, setDataUser] = useState({});
   const [listUser, setListUser] = useState([]);
 
@@ -20,7 +22,7 @@ function ManageUser() {
 
   // api
   const fetchListUser = async () => {
-    const res = await apiAllUserService();
+    const res = await allUserService();
     if (res.EC === 0) {
       setListUser(res.DT);
     }
@@ -41,6 +43,7 @@ function ManageUser() {
           <TableUser
             listUser={listUser}
             setShowModalUpdate={setShowModalUpdate}
+            setShowModalView={setShowModalView}
             setDataUser={setDataUser}
           />
         </div>
@@ -54,6 +57,12 @@ function ManageUser() {
           setShow={setShowModalUpdate}
           dataUser={dataUser}
           fetchListUser={fetchListUser}
+        />
+
+        <ViewUser
+          dataUser={dataUser}
+          show={showModalView}
+          setShow={setShowModalView}
         />
       </div>
 
