@@ -4,6 +4,7 @@ function TableUser({
   listUser,
   setShowModalUpdate,
   setShowModalView,
+  setShowModalDelete,
   setDataUser,
 }) {
   return (
@@ -45,7 +46,15 @@ function TableUser({
                   >
                     Update
                   </button>
-                  <button className="btn btn-danger">Delete</button>
+                  <button
+                    className="btn btn-danger"
+                    onClick={() => {
+                      setShowModalDelete(true);
+                      setDataUser(item);
+                    }}
+                  >
+                    Delete
+                  </button>
                 </td>
               </tr>
             );

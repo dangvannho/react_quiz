@@ -3,7 +3,7 @@ import _ from "lodash";
 import Button from "react-bootstrap/Button";
 import Modal from "react-bootstrap/Modal";
 import "~/components/ModalCreateUser/ModalCreateUser.scss";
-import "./ViewUser.scss";
+import "./ModalViewUser.scss";
 import avatarDefault from "~/assets/imgs/avatarDefault.svg";
 
 function ViewUser({ show, setShow, dataUser }) {
