@@ -5,13 +5,16 @@ import { FcPlus } from "react-icons/fc";
 
 import ModalCreateUser from "~/components/ModalCreateUser";
 import ModalUpdateUser from "~/components/ModalUpdateUser";
-import TableUser from "~/components/TableUser";
 import ModalViewUser from "~/components/ModalViewUser";
 import allUserService from "~/services/apiAllUserService";
+import { userWithPaginate } from "~/services/apiAllUserService";
 import ModalDeleteUser from "~/components/ModalDeleteUser";
+import TableUserPaginate from "~/components/TableUserPaginate";
 import "./ManageUser.scss";
 
 function ManageUser() {
+  const LIMIT_USER = 10;
+  const [pageCount, setPageCount] = useState(0);
   const [showModalCreate, setShowModalCreate] = useState(false);
   const [showModalUpdate, setShowModalUpdate] = useState(false);
   const [showModalDelete, setShowModalDelete] = useState(false);
@@ -20,7 +23,8 @@ function ManageUser() {
   const [listUser, setListUser] = useState([]);
 
   useEffect(() => {
-    fetchListUser();
+    // fetchListUser();
+    fetchListUserWithPaginate(1);
   }, []);
 
   // api
@@ -31,6 +35,13 @@ function ManageUser() {
     }
   };
 
+  const fetchListUserWithPaginate = async (page) => {
+    const res = await userWithPaginate(page, LIMIT_USER);
+    if (res.EC === 0) {
+      setListUser(res.DT.users);
+      setPageCount(res.DT.totalPages);
+    }
+  };
   return (
     <div className="manage-user_container">
       <h2 className="manage-user_title">Manage User</h2>
@@ -43,12 +54,22 @@ function ManageUser() {
           Add new user
         </button>
         <div className="manage-user_table">
-          <TableUser
+          {/*  <TableUser
             listUser={listUser}
             setShowModalUpdate={setShowModalUpdate}
             setShowModalView={setShowModalView}
             setShowModalDelete={setShowModalDelete}
             setDataUser={setDataUser}
+          /> */}
+
+          <TableUserPaginate
+            listUser={listUser}
+            setShowModalUpdate={setShowModalUpdate}
+            setShowModalView={setShowModalView}
+            setShowModalDelete={setShowModalDelete}
+            setDataUser={setDataUser}
+            fetchListUserWithPaginate={fetchListUserWithPaginate}
+            pageCount={pageCount}
           />
         </div>
 
