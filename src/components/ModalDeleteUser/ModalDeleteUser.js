@@ -8,7 +8,13 @@ import deleteUser from "~/services/apiDeleteUserService";
 import "~/components/ModalCreateUser/ModalCreateUser.scss";
 import "./ModalDeleteUser.scss";
 
-function ModalDeleteUser({ show, setShow, dataUser, fetchListUser }) {
+function ModalDeleteUser({
+  show,
+  setShow,
+  dataUser,
+  fetchListUser,
+  setCurrentPage,
+}) {
   const [id, setId] = useState("");
   const [email, setEmail] = useState("");
 
@@ -25,7 +31,8 @@ function ModalDeleteUser({ show, setShow, dataUser, fetchListUser }) {
     if (data.EC === 0) {
       toast.success(data.EM);
       handleClose();
-      fetchListUser();
+      // fetchListUser();
+      setCurrentPage(1);
     } else {
       toast.error(data.EM);
     }

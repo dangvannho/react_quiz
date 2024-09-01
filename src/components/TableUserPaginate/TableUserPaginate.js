@@ -1,5 +1,5 @@
 import ReactPaginate from "react-paginate";
-import { useState } from "react";
+
 import "./TableUserPaginate.scss";
 
 function TableUserPaginate({
@@ -8,13 +8,15 @@ function TableUserPaginate({
   setShowModalView,
   setShowModalDelete,
   setDataUser,
-  fetchListUserWithPaginate,
   pageCount,
+  currentPage,
+  setCurrentPage,
 }) {
   const handlePageClick = (event) => {
-    fetchListUserWithPaginate(+event.selected + 1);
+    setCurrentPage(+event.selected + 1);
     console.log(`User requested page number ${event.selected}`);
   };
+
   return (
     <div className="wapper-table">
       <table className="table table-bordered table-striped table-hover ">
@@ -91,6 +93,7 @@ function TableUserPaginate({
         containerClassName="pagination"
         activeClassName="active"
         renderOnZeroPageCount={null}
+        forcePage={currentPage - 1}
       />
     </div>
   );

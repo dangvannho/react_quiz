@@ -15,6 +15,7 @@ import "./ManageUser.scss";
 function ManageUser() {
   const LIMIT_USER = 10;
   const [pageCount, setPageCount] = useState(0);
+  const [currentPage, setCurrentPage] = useState(1);
   const [showModalCreate, setShowModalCreate] = useState(false);
   const [showModalUpdate, setShowModalUpdate] = useState(false);
   const [showModalDelete, setShowModalDelete] = useState(false);
@@ -24,8 +25,8 @@ function ManageUser() {
 
   useEffect(() => {
     // fetchListUser();
-    fetchListUserWithPaginate(1);
-  }, []);
+    fetchListUserWithPaginate(currentPage);
+  }, [currentPage]);
 
   // api
   const fetchListUser = async () => {
@@ -68,8 +69,9 @@ function ManageUser() {
             setShowModalView={setShowModalView}
             setShowModalDelete={setShowModalDelete}
             setDataUser={setDataUser}
-            fetchListUserWithPaginate={fetchListUserWithPaginate}
             pageCount={pageCount}
+            currentPage={currentPage}
+            setCurrentPage={setCurrentPage}
           />
         </div>
 
@@ -77,6 +79,7 @@ function ManageUser() {
           show={showModalCreate}
           setShow={setShowModalCreate}
           fetchListUser={fetchListUser}
+          fetchListUserWithPaginate={fetchListUserWithPaginate}
         />
 
         <ModalUpdateUser
@@ -84,6 +87,8 @@ function ManageUser() {
           setShow={setShowModalUpdate}
           dataUser={dataUser}
           fetchListUser={fetchListUser}
+          currentPage={currentPage}
+          fetchListUserWithPaginate={fetchListUserWithPaginate}
         />
 
         <ModalDeleteUser
@@ -91,6 +96,7 @@ function ManageUser() {
           setShow={setShowModalDelete}
           dataUser={dataUser}
           fetchListUser={fetchListUser}
+          setCurrentPage={setCurrentPage}
         />
 
         <ModalViewUser

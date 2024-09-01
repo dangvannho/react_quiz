@@ -8,7 +8,14 @@ import "react-toastify/dist/ReactToastify.css";
 import "~/components/ModalCreateUser/ModalCreateUser.scss";
 import updateUser from "~/services/apiUpdateUserService";
 
-function ModalUpdateUser({ show, setShow, fetchListUser, dataUser }) {
+function ModalUpdateUser({
+  show,
+  setShow,
+  fetchListUser,
+  dataUser,
+  currentPage,
+  fetchListUserWithPaginate,
+}) {
   const [id, setId] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -56,7 +63,7 @@ function ModalUpdateUser({ show, setShow, fetchListUser, dataUser }) {
     if (data.EC === 0) {
       toast.success(data.EM);
       handleClose();
-      fetchListUser();
+      fetchListUserWithPaginate(currentPage);
     } else {
       toast.error(data.EM);
     }
