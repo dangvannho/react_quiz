@@ -6,6 +6,7 @@ import Admin from "~/pages/Admin";
 import ManageUser from "~/pages/Admin/ManageUser";
 import ManageQuiz from "~/pages/Admin/ManageQuiz";
 import ManageQuestion from "~/pages/Admin/ManageQuestion";
+import Login from "~/pages/Login";
 import NotFound from "~/pages/NotFound";
 
 import AdminLayout from "~/layouts/AdminLayout";
@@ -35,6 +36,7 @@ const publicRoutes = [
     layout: AdminLayout,
   },
   { path: config.routes.notFound, component: NotFound, layout: null },
+  { path: config.routes.login, component: Login, layout: null },
 ];
 
 const privateRoutes = [];

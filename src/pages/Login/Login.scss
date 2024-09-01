@@ -1,0 +1,58 @@
+.login-container {
+  .login-header {
+    padding: 10px 30px;
+    text-align: end;
+
+    .header-desc {
+      margin-right: 15px;
+    }
+  }
+
+  .login-body {
+    display: flex;
+    justify-content: center;
+  }
+}
+
+.login-wapper {
+  min-width: 500px;
+  min-height: 500px;
+  margin-top: 110px;
+
+  .login-heading {
+    text-align: center;
+  }
+}
+
+.login-content {
+  padding: 20px 72px;
+
+  .login-title {
+    font-size: 1.3rem;
+    text-align: center;
+  }
+
+  .form-group {
+    position: relative;
+    margin-top: 25px;
+
+    .eyes {
+      position: absolute;
+      right: 10px;
+      top: 52%;
+      cursor: pointer;
+    }
+  }
+
+  .forgotpasword {
+    display: inline-block;
+    margin-top: 3px;
+    color: #212529;
+    text-decoration: underline;
+  }
+
+  .btn-dark {
+    width: 100%;
+    margin-top: 30px;
+  }
+}

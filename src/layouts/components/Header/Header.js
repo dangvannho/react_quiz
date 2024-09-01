@@ -1,14 +1,18 @@
-import { NavLink } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
 import Container from "react-bootstrap/Container";
 import Nav from "react-bootstrap/Nav";
 import Navbar from "react-bootstrap/Navbar";
-import NavDropdown from "react-bootstrap/NavDropdown";
 import Button from "react-bootstrap/Button";
-
 import config from "~/config";
 import "./Header.scss";
 
 function Header() {
+  const navigate = useNavigate();
+
+  const handleLogin = () => {
+    navigate(config.routes.login);
+  };
+
   return (
     <Navbar expand="lg" className="bg-body-tertiary" fixed="top">
       <Container className="justify-content-between">
@@ -30,7 +34,9 @@ function Header() {
         </Navbar.Collapse>
 
         <Nav className="gap-3">
-          <Button variant="outline-dark">Login</Button>
+          <Button variant="outline-dark" onClick={handleLogin}>
+            Login
+          </Button>
           <Button variant="dark">Sign up</Button>
         </Nav>
 
