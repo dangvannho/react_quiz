@@ -1,5 +1,4 @@
 import { useState, useEffect } from "react";
-import { Bounce, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { FcPlus } from "react-icons/fc";
 
@@ -96,6 +95,8 @@ function ManageUser() {
           setShow={setShowModalDelete}
           dataUser={dataUser}
           fetchListUser={fetchListUser}
+          fetchListUserWithPaginate={fetchListUserWithPaginate}
+          currentPage={currentPage}
           setCurrentPage={setCurrentPage}
         />
 
@@ -105,20 +106,6 @@ function ManageUser() {
           setShow={setShowModalView}
         />
       </div>
-
-      <ToastContainer
-        position="top-right"
-        autoClose={5000}
-        hideProgressBar={false}
-        newestOnTop={false}
-        closeOnClick
-        rtl={false}
-        pauseOnFocusLoss
-        draggable
-        pauseOnHover
-        theme="light"
-        transition={Bounce}
-      />
     </div>
   );
 }

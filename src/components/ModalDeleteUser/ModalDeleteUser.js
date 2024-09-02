@@ -13,6 +13,8 @@ function ModalDeleteUser({
   setShow,
   dataUser,
   fetchListUser,
+  fetchListUserWithPaginate,
+  currentPage,
   setCurrentPage,
 }) {
   const [id, setId] = useState("");
@@ -32,7 +34,11 @@ function ModalDeleteUser({
       toast.success(data.EM);
       handleClose();
       // fetchListUser();
-      setCurrentPage(1);
+      if (currentPage === 1) {
+        fetchListUserWithPaginate(1);
+      } else {
+        setCurrentPage(1);
+      }
     } else {
       toast.error(data.EM);
     }

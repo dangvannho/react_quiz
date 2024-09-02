@@ -11,8 +11,8 @@ import updateUser from "~/services/apiUpdateUserService";
 function ModalUpdateUser({
   show,
   setShow,
-  fetchListUser,
   dataUser,
+  fetchListUser,
   currentPage,
   fetchListUserWithPaginate,
 }) {
@@ -55,6 +55,16 @@ function ModalUpdateUser({
 
   const handleClose = () => {
     setShow(false);
+    setId(dataUser.id);
+    setEmail(dataUser.email);
+    setUsername(dataUser.username);
+    setRole(dataUser.role);
+
+    if (dataUser.image) {
+      setPreviewImage(`data:image/jpeg;base64,${dataUser.image}`);
+    } else {
+      setPreviewImage("");
+    }
   };
 
   const handleSubmitUpdateUSer = async () => {

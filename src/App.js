@@ -1,6 +1,7 @@
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import { Fragment } from "react";
 import { publicRoutes } from "./routes";
+import { Bounce, ToastContainer } from "react-toastify";
 import DefaultLayout from "./layouts/DefaultLayout";
 
 function App() {
@@ -29,6 +30,20 @@ function App() {
             );
           })}
         </Routes>
+
+        <ToastContainer
+          position="top-right"
+          autoClose={5000}
+          hideProgressBar={false}
+          newestOnTop={false}
+          closeOnClick
+          rtl={false}
+          pauseOnFocusLoss
+          draggable
+          pauseOnHover
+          theme="light"
+          transition={Bounce}
+        />
       </div>
     </Router>
   );

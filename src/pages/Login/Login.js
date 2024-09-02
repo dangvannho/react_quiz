@@ -2,6 +2,9 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { FaEyeSlash } from "react-icons/fa";
 import { IoEyeSharp } from "react-icons/io5";
+import { toast } from "react-toastify";
+
+import loginUser from "~/services/apiLoginUserService";
 import config from "~/config";
 import "./Login.scss";
 
@@ -13,8 +16,27 @@ function Login() {
 
   const navigate = useNavigate();
 
-  const handleSubmitLogin = () => {
-    alert("Login");
+  // Xử lý khoảng trắng đầu tiên
+  const handleEmail = (e) => {
+    const emailValue = e.target.value;
+    if (!emailValue.startsWith(" ")) {
+      setEmail(emailValue);
+    }
+  };
+
+  const handleSubmitLogin = async () => {
+    // validate
+    const emailVaidate = email.trim();
+
+    // call api
+    const data = await loginUser(emailVaidate, password);
+
+    if (data.EC === 0) {
+      // toast.success(data.EM);
+      navigate(config.routes.home);
+    } else {
+      toast.error(data.EM);
+    }
   };
 
   return (
@@ -39,7 +61,7 @@ function Login() {
                 className="form-control"
                 placeholder="abc@gmail.com"
                 id="email"
-                onChange={(e) => setEmail(e.target.value)}
+                onChange={handleEmail}
               />
             </div>
 
@@ -77,10 +99,7 @@ function Login() {
               )}
             </div>
             <span className="forgotpasword">Forgot password?</span>
-            <button
-              className="btn btn-dark"
-              onClick={() => handleSubmitLogin()}
-            >
+            <button className="btn btn-dark" onClick={handleSubmitLogin}>
               Log in to Quiz
             </button>
           </div>
