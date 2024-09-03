@@ -6,6 +6,7 @@ const routes = {
   manageQuiz: "/admin/manageQuiz",
   manageQuestion: "/admin/manageQuestion",
   login: "/login",
+  signup: "/signup",
   notFound: "*",
 };
 

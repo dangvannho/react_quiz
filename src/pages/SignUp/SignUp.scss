@@ -1,5 +1,5 @@
-.login-container {
-  .login-header {
+.sign-up-container {
+  .sign-up-header {
     padding: 10px 30px;
     text-align: end;
 
@@ -8,26 +8,26 @@
     }
   }
 
-  .login-body {
+  .sign-up-body {
     display: flex;
     justify-content: center;
   }
 }
 
-.login-wapper {
+.sign-up-wapper {
   min-width: 550px;
   min-height: 500px;
   margin-top: 110px;
 
-  .login-heading {
+  .sign-up-heading {
     text-align: center;
   }
 }
 
-.login-content {
+.sign-up-content {
   padding: 20px 72px;
 
-  .login-title {
+  .sign-up-title {
     font-size: 1.3rem;
     text-align: center;
   }
@@ -42,13 +42,6 @@
       top: 52%;
       cursor: pointer;
     }
-  }
-
-  .forgotpasword {
-    display: inline-block;
-    margin-top: 3px;
-    color: #212529;
-    text-decoration: underline;
   }
 
   .btn-dark {

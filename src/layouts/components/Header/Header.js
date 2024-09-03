@@ -9,10 +9,6 @@ import "./Header.scss";
 function Header() {
   const navigate = useNavigate();
 
-  const handleLogin = () => {
-    navigate(config.routes.login);
-  };
-
   return (
     <Navbar expand="lg" className="bg-body-tertiary" fixed="top">
       <Container className="justify-content-between">
@@ -34,10 +30,15 @@ function Header() {
         </Navbar.Collapse>
 
         <Nav className="gap-3">
-          <Button variant="outline-dark" onClick={handleLogin}>
+          <Button
+            variant="outline-dark"
+            onClick={() => navigate(config.routes.login)}
+          >
             Login
           </Button>
-          <Button variant="dark">Sign up</Button>
+          <Button variant="dark" onClick={() => navigate(config.routes.signup)}>
+            Sign up
+          </Button>
         </Nav>
 
         {/* <Nav>

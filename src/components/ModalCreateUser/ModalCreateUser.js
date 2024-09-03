@@ -5,7 +5,7 @@ import { FcPlus } from "react-icons/fc";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import "./ModalCreateUser.scss";
-import createNewUser from "~/services/apiCreateService";
+import createNewUser from "~/services/apiCreateUserService";
 
 function ModalCreateUser({
   show,
