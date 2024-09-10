@@ -11,6 +11,8 @@ function ModalCreateUser({
   show,
   setShow,
   fetchListUser,
+  currentPage,
+  setCurrentPage,
   fetchListUserWithPaginate,
 }) {
   const [email, setEmail] = useState("");
@@ -75,7 +77,11 @@ function ModalCreateUser({
       toast.success(data.EM);
       handleClose();
       // fetchListUser();
-      fetchListUserWithPaginate(1);
+      if (currentPage === 1) {
+        fetchListUserWithPaginate(1);
+      } else {
+        setCurrentPage(1);
+      }
     } else {
       toast.error(data.EM);
     }

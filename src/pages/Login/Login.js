@@ -1,9 +1,11 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { useDispatch } from "react-redux";
 import { FaEyeSlash } from "react-icons/fa";
 import { IoEyeSharp } from "react-icons/io5";
 import { toast } from "react-toastify";
 
+import { doLogin } from "~/redux/actions";
 import loginUser from "~/services/apiLoginUserService";
 import config from "~/config";
 import "./Login.scss";
@@ -15,6 +17,7 @@ function Login() {
   const [typePassword, setTypePassword] = useState("password");
 
   const navigate = useNavigate();
+  const dispatch = useDispatch();
 
   // Xử lý khoảng trắng đầu tiên
   const handleEmail = (e) => {
@@ -33,6 +36,8 @@ function Login() {
 
     if (data.EC === 0) {
       // toast.success(data.EM);
+      dispatch(doLogin(data));
+
       navigate(config.routes.home);
     } else {
       toast.error(data.EM);
