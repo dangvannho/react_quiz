@@ -1,0 +1,20 @@
+.list-quiz-container {
+  display: flex;
+  gap: 30px;
+
+  .card-img-top {
+    height: 200px;
+    object-position: center;
+    object-fit: cover;
+  }
+
+  .card-text {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  .btn.btn-primary {
+    display: inline-block;
+  }
+}

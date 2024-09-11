@@ -8,14 +8,15 @@ import ManageQuiz from "~/pages/Admin/ManageQuiz";
 import ManageQuestion from "~/pages/Admin/ManageQuestion";
 import Login from "~/pages/Login";
 import SignUp from "~/pages/SignUp";
+import ListQuiz from "~/pages/User/ListQuiz";
 import NotFound from "~/pages/NotFound";
 
 import AdminLayout from "~/layouts/AdminLayout";
 
 const publicRoutes = [
   { path: config.routes.home, component: Home },
+  { path: config.routes.user, component: ListQuiz },
   { path: config.routes.admin, component: Admin, layout: AdminLayout },
-  { path: config.routes.user, component: User },
   {
     path: config.routes.manageUser,
     component: ManageUser,

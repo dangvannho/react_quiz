@@ -1,8 +1,15 @@
+import { useSelector } from "react-redux";
+import { useNavigate } from "react-router-dom";
 import Button from "react-bootstrap/Button";
 import "./Home.scss";
 import video from "~/assets/videos/hero.mp4";
+import { isAuthenticateSelector } from "~/redux/selectors";
+import config from "~/config";
 
 function Home() {
+  const isAuthenticate = useSelector(isAuthenticateSelector);
+  const navigate = useNavigate();
+
   return (
     <div className="homepage-hero">
       <video autoPlay muted loop playsInline className="video">
@@ -15,7 +22,15 @@ function Home() {
           designed to be
           <strong> refreshingly different.</strong>
         </p>
-        <Button variant="dark">{`Get started—it's free`} </Button>
+        {isAuthenticate ? (
+          <Button variant="dark" onClick={() => navigate(config.routes.user)}>
+            Doing Quiz Now
+          </Button>
+        ) : (
+          <Button variant="dark" onClick={() => navigate(config.routes.login)}>
+            {`Get started—it's free`}{" "}
+          </Button>
+        )}
       </div>
     </div>
   );
