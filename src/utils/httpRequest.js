@@ -1,4 +1,7 @@
 import axios from "axios";
+import NProgress from "nprogress";
+
+NProgress.configure({ showSpinner: false });
 
 const httpRequest = axios.create({
   baseURL: "http://localhost:8081/",
@@ -7,6 +10,8 @@ const httpRequest = axios.create({
 // Add a request interceptor
 httpRequest.interceptors.request.use(
   function (config) {
+    NProgress.start();
+
     // Do something before request is sent
     return config;
   },
@@ -19,12 +24,14 @@ httpRequest.interceptors.request.use(
 // Add a response interceptor
 httpRequest.interceptors.response.use(
   function (response) {
+    NProgress.done();
     // Any status code that lie within the range of 2xx cause this function to trigger
     // Do something with response data
 
     return response.data ? response.data : response;
   },
   function (error) {
+    NProgress.done();
     // Any status codes that falls outside the range of 2xx cause this function to trigger
     // Do something with response error
 

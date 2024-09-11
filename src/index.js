@@ -7,6 +7,7 @@ import store from "./redux/store";
 import GlobalStyle from "./components/GlobalStyle";
 import reportWebVitals from "./reportWebVitals";
 import "bootstrap/dist/css/bootstrap.min.css";
+import "nprogress/nprogress.css";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(

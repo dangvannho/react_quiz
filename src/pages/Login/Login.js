@@ -4,6 +4,7 @@ import { useDispatch } from "react-redux";
 import { FaEyeSlash } from "react-icons/fa";
 import { IoEyeSharp } from "react-icons/io5";
 import { toast } from "react-toastify";
+import { CgSpinnerTwo } from "react-icons/cg";
 
 import { doLogin } from "~/redux/actions";
 import loginUser from "~/services/apiLoginUserService";
@@ -15,6 +16,7 @@ function Login() {
   const [password, setPassword] = useState("");
   const [showpassword, setShowPassword] = useState(false);
   const [typePassword, setTypePassword] = useState("password");
+  const [isLoading, setIsLoading] = useState(false);
 
   const navigate = useNavigate();
   const dispatch = useDispatch();
@@ -32,14 +34,16 @@ function Login() {
     const emailVaidate = email.trim();
 
     // call api
+    setIsLoading(true);
     const data = await loginUser(emailVaidate, password);
 
     if (data.EC === 0) {
       // toast.success(data.EM);
       dispatch(doLogin(data));
-
+      setIsLoading(false);
       navigate(config.routes.home);
     } else {
+      setIsLoading(false);
       toast.error(data.EM);
     }
   };
@@ -109,7 +113,12 @@ function Login() {
               )}
             </div>
             <span className="forgotpasword">Forgot password?</span>
-            <button className="btn btn-dark" onClick={handleSubmitLogin}>
+            <button
+              className="btn btn-dark"
+              onClick={handleSubmitLogin}
+              disabled={isLoading}
+            >
+              {isLoading && <CgSpinnerTwo className="loading-icon" />}
               Log in to Quiz
             </button>
           </div>

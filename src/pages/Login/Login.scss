@@ -52,7 +52,33 @@
   }
 
   .btn-dark {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 0 5px;
     width: 100%;
     margin-top: 30px;
+
+    &:disabled {
+      background-color: #2125293d;
+      border: none;
+      pointer-events: auto;
+      cursor: no-drop;
+    }
+
+    .loading-icon {
+      color: #333;
+      font-size: 20px;
+      animation: loading 1s infinite linear;
+    }
+
+    @keyframes loading {
+      from {
+        transform: rotate(0deg);
+      }
+      to {
+        transform: rotate(360deg);
+      }
+    }
   }
 }
