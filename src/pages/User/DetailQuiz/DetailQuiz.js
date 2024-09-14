@@ -1,14 +1,16 @@
-import { useEffect } from "react";
+import { useState, useEffect } from "react";
 import { useParams, useLocation } from "react-router-dom";
 import _ from "lodash";
 import questionById from "~/services/apiQuestionByIdService";
 import "./DetailQuiz.scss";
+import Question from "./Question";
 
 function DetailQuiz() {
+  const [dataQuiz, setDataQuiz] = useState([]);
+  const [currentQuestion, setCurrentQuestion] = useState(0);
+
   const param = useParams();
   const location = useLocation();
-  console.log(location);
-
   const quizId = param.id;
 
   useEffect(() => {
@@ -40,7 +42,7 @@ function DetailQuiz() {
         })
         .value();
 
-      console.log(dataFinal);
+      setDataQuiz(dataFinal);
     }
   };
 
@@ -51,25 +53,24 @@ function DetailQuiz() {
           Quiz {quizId}: {location?.state?.quizTitle}
         </h2>
         <div className="quiz-body">
-          <img src="" alt="" />
-          <div className="q-content">
-            <div className="question">
-              <h4 className="question-desc">Question 1: Đây là ai?</h4>
-              {/*    <img
-                src="https://images.unsplash.com/photo-1721332149371-fa99da451baa?q=80&w=2536&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDF8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
-                alt=""
-                className="question-image"
-              /> */}
-              <div className="answers">
-                <span>A. Là cô nào đấy...</span>
-                <span>B. Là em nào đấy...</span>
-                <span>C. Đếu care...</span>
-              </div>
-            </div>
-          </div>
+          <Question
+            data={dataQuiz.length > 0 ? dataQuiz[currentQuestion] : []}
+          />
           <div className="q-footer">
-            <button className="btn btn-secondary">Prev</button>
-            <button className="btn btn-primary">Next</button>
+            <button
+              className="btn btn-secondary"
+              disabled={currentQuestion === 0 ? true : false}
+              onClick={() => setCurrentQuestion(currentQuestion - 1)}
+            >
+              Prev
+            </button>
+            <button
+              className="btn btn-primary"
+              disabled={currentQuestion >= dataQuiz.length - 1 ? true : false}
+              onClick={() => setCurrentQuestion(currentQuestion + 1)}
+            >
+              Next
+            </button>
           </div>
         </div>
       </div>
